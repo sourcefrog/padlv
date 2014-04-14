@@ -1,5 +1,5 @@
-pad.lv - Launchpad-specific short URL service
-=============================================
+pad.lv - Launchpad.net short URL service
+========================================
 
-This particular branch is an AppEngine rewrite, currently running at 
+This is an AppEngine rewrite of pad.lv, currently running at 
 http://beta.pad.lv
