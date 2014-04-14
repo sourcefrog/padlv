@@ -1,8 +1,8 @@
 package padlv
 
 import (
-        "fmt"
         "net/http"
+        "regexp"
 )
 
 func init() {
@@ -10,5 +10,17 @@ func init() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-        fmt.Fprint(w, "Hello, appengine bugs!")
+        path := r.URL.Path
+        if path[0] != '/' {
+                http.NotFound(w, r)
+        }
+        path = path[1:]
+
+        if matched, _ := regexp.MatchString("^[0-9]+$", path); matched {
+                http.Redirect(w, r,
+                        "http://pad.lv/"+path,
+                        http.StatusTemporaryRedirect)
+        } else {
+                http.NotFound(w, r)
+        }
 }
